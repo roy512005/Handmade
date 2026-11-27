@@ -1,6 +1,7 @@
 import { PGlite } from "@electric-sql/pglite";
 import fs from "node:fs";
 import path from "node:path";
+import { storageRoot } from "./storage";
 
 /**
  * Database access. Embedded Postgres (PGlite) so the app runs with zero setup.
@@ -74,7 +75,7 @@ function getDb(): Promise<PGlite> {
   // Never leave two live instances on one data folder: close whatever was open before reconnecting.
   const old = [cur?.db, g2.__db, g2.__hmDb2].filter(Boolean) as Promise<PGlite>[];
   g2.__db = undefined; g2.__hmDb2 = undefined;
-  const dir = process.env.DATA_DIR ?? path.join(process.cwd(), ".data", "pg");
+  const dir = process.env.DATA_DIR ?? path.join(storageRoot(), "pg");
   if (!dir.startsWith("memory:")) fs.mkdirSync(path.dirname(dir), { recursive: true });
   const db = Promise.all(old.map((o) => o.then((d) => d.close()).catch(() => undefined)))
     .then(() => createDb(dir))

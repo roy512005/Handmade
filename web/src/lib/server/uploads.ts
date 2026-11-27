@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { storageRoot } from "./storage";
 
-const ROOT = process.env.UPLOAD_DIR ?? path.join(process.cwd(), ".data");
+const ROOT = process.env.UPLOAD_DIR ?? storageRoot();
 const PUBLIC_DIR = path.join(ROOT, "uploads");
 const PRIVATE_DIR = path.join(ROOT, "private");
 export const MAX_BYTES = 4 * 1024 * 1024;

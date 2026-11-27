@@ -47,6 +47,9 @@ With `NODE_ENV=production` (`npm start`) the app is locked down unless `DEMO_MOD
 Without `DEMO_MODE` a new database gets categories only, and checkout and payouts are blocked until real providers are connected.
 Start a live site with an empty data folder: a database seeded in demo mode still contains the demo accounts.
 
+## Deploying to Vercel (preview only)
+Set Root Directory to `web`. Vercel's app folder is read-only, so the database and uploads go to its temp folder: **data is not saved reliably** and instances don't share it. Don't take real sign-ups or orders until the database and file storage are hosted.
+
 ## What's real vs. simulated
 
 | Area | Status |
