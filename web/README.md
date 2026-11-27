@@ -6,7 +6,7 @@ Product requirements: `../PLAN.md`. Domain guidance: `../.claude/skills/*/SKILL.
 ## Run
 
 ```bash
-npm install --legacy-peer-deps
+npm install
 npm run dev            # http://localhost:3000 (one server per data folder — see below)
 npm test               # schema, order flow, ledger, search, dashboard queries, production safety
 npm run test:e2e       # browser tests: checkout, refund, seller approval, password reset (first run: npx playwright install chromium)
